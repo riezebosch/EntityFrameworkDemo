@@ -15,5 +15,7 @@ namespace EntityFrameworkDemo
     public partial class Professor : Person
     {
         public Nullable<System.DateTime> HireDate { get; set; }
+        public byte[] Timestamp { get; set; }
+        public string Location { get; set; }
     }
 }

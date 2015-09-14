@@ -71,9 +71,6 @@
     <Compile Include="Department.cs">
       <DependentUpon>School.tt</DependentUpon>
     </Compile>
-    <Compile Include="OfficeAssignment.cs">
-      <DependentUpon>School.tt</DependentUpon>
-    </Compile>
     <Compile Include="OnlineCourse.cs">
       <DependentUpon>School.tt</DependentUpon>
     </Compile>

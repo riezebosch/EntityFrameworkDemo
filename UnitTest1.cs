@@ -44,5 +44,18 @@ namespace EntityFrameworkDemo
 
             }
         }
+
+        [TestMethod]
+        public void EntitySplittingWithOfficeAssignment()
+        {
+            using (var context = new SchoolEntities())
+            {
+                foreach (var person in context.People.OfType<Professor>())
+                {
+                    Console.WriteLine($"{person.FirstName} {person.LastName} ({person.Location})");
+                }
+
+            }
+        }
     }
 }
