@@ -14,6 +14,6 @@ namespace EntityFrameworkDemo
     
     public partial class Student : Person
     {
-        public Nullable<System.DateTime> EnrollmentDate { get; set; }
+        public System.DateTime EnrollmentDate { get; set; }
     }
 }

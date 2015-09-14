@@ -10,12 +10,10 @@
 namespace EntityFrameworkDemo
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Professor : Person
+    public partial class FullName
     {
-        public System.DateTime HireDate { get; set; }
-        public byte[] Timestamp { get; set; }
-        public string Location { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
     }
 }

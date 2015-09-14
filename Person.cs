@@ -19,11 +19,12 @@ namespace EntityFrameworkDemo
         {
             this.StudentGrades = new HashSet<StudentGrade>();
             this.Courses = new HashSet<Course>();
+            this.FullName = new FullName();
         }
     
         public int PersonID { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
+    
+        public FullName FullName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentGrade> StudentGrades { get; set; }

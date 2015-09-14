@@ -33,13 +33,13 @@ namespace EntityFrameworkDemo
                 Console.WriteLine("-- Professors: ");
                 foreach (var person in context.People.OfType<Professor>())
                 {
-                    Console.WriteLine($"{person.FirstName} {person.LastName} ({person.HireDate})");
+                    Console.WriteLine($"{person.FullName.FirstName} {person.FullName.LastName} ({person.HireDate})");
                 }
 
                 Console.WriteLine("-- Students: ");
                 foreach (var person in context.People.OfType<Student>())
                 {
-                    Console.WriteLine($"{person.FirstName} {person.LastName} ({person.EnrollmentDate})");
+                    Console.WriteLine($"{person.FullName.FirstName} {person.FullName.LastName} ({person.EnrollmentDate})");
                 }
 
             }
@@ -52,7 +52,7 @@ namespace EntityFrameworkDemo
             {
                 foreach (var person in context.People.OfType<Professor>())
                 {
-                    Console.WriteLine($"{person.FirstName} {person.LastName} ({person.Location})");
+                    Console.WriteLine($"{person.FullName.FirstName} {person.FullName.LastName} ({person.Location})");
                 }
 
             }
