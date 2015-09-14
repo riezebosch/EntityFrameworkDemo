@@ -312,8 +312,8 @@
             <PropertyRef Name="EnrollmentID" />
           </Key>
           <Property Name="EnrollmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseID" Type="Int32" Nullable="false" />
-          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="CourseID" Nullable="false" Type="Int32" />
+          <Property Name="StudentID" Nullable="false" Type="Int32" />
           <Property Name="Grade" Type="Decimal" Precision="3" Scale="2" />
           <NavigationProperty Name="Course" Relationship="SchoolModel.FK_StudentGrade_Course" FromRole="StudentGrade" ToRole="Course" />
           <NavigationProperty Name="Students" Relationship="SchoolModel.StudentGradeStudent" FromRole="StudentGrade" ToRole="Student" />

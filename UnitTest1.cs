@@ -118,8 +118,9 @@ namespace EntityFrameworkDemo
             {
                 context.Database.Log = Console.WriteLine;
 
+                int id = 6;
                 var li1 = (from p in context.People
-                          where p.PersonID == 6
+                          where p.PersonID == id
                           select p).SingleOrDefault();
 
                 var li2 = context.People.Find(7);
