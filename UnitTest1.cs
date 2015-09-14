@@ -12,9 +12,16 @@ namespace EntityFrameworkDemo
         {
             using (var context = new SchoolEntities())
             {
-                foreach (var course in context.Courses)
+                foreach (var course in context.Courses.OfType<OnsiteCourse>())
                 {
-                    Console.WriteLine("{0} {1}", course.Title, course.OnlineCourse?.URL);
+                    Console.WriteLine("{0} {1}",
+                        course.Title, course.Location);
+                }
+
+                foreach (var course in context.Courses.OfType<OnlineCourse>())
+                {
+                    Console.WriteLine("{0} {1}", 
+                        course.Title, course.URL);
                 }
                 
             }
