@@ -17,18 +17,11 @@ namespace EntityFrameworkDemo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
-            this.StudentGrades = new HashSet<StudentGrade>();
-            this.Courses = new HashSet<Course>();
             this.FullName = new FullName();
         }
     
         public int PersonID { get; set; }
     
         public FullName FullName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StudentGrade> StudentGrades { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Courses { get; set; }
     }
 }

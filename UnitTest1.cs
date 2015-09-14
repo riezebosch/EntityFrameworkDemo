@@ -57,5 +57,22 @@ namespace EntityFrameworkDemo
 
             }
         }
+
+        [TestMethod]
+        public void StudentGradesOnStudent()
+        {
+            using (var context = new SchoolEntities())
+            {
+                foreach (var student in context.People.OfType<Student>())
+                {
+                    Console.WriteLine($"{student.FullName.FirstName} {student.FullName.LastName}");
+                    foreach (var grade in student.Grades)
+                    {
+                        Console.WriteLine($"  {grade.Course.Title}: {grade.Grade}");
+                    }
+                }
+
+            }
+        }
     }
 }

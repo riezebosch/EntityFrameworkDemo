@@ -18,7 +18,7 @@ namespace EntityFrameworkDemo
         public Course()
         {
             this.StudentGrades = new HashSet<StudentGrade>();
-            this.People = new HashSet<Person>();
+            this.Professors = new HashSet<Professor>();
         }
     
         public int CourseID { get; set; }
@@ -30,6 +30,6 @@ namespace EntityFrameworkDemo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentGrade> StudentGrades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person> People { get; set; }
+        public virtual ICollection<Professor> Professors { get; set; }
     }
 }

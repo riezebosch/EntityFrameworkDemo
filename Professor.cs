@@ -14,8 +14,17 @@ namespace EntityFrameworkDemo
     
     public partial class Professor : Person
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Professor()
+        {
+            this.Course = new HashSet<Course>();
+        }
+    
         public System.DateTime HireDate { get; set; }
         public byte[] Timestamp { get; set; }
         public string Location { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Course> Course { get; set; }
     }
 }

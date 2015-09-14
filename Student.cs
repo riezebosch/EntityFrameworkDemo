@@ -14,6 +14,15 @@ namespace EntityFrameworkDemo
     
     public partial class Student : Person
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Student()
+        {
+            this.Grades = new HashSet<StudentGrade>();
+        }
+    
         public System.DateTime EnrollmentDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentGrade> Grades { get; set; }
     }
 }
