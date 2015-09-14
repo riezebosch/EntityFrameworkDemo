@@ -289,7 +289,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Courses" EntityType="Self.Course" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="People" EntityType="Self.Person" />

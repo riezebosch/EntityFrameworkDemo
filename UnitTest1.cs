@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using System.Data.Entity;
 
 namespace EntityFrameworkDemo
 {
@@ -72,6 +73,75 @@ namespace EntityFrameworkDemo
                     }
                 }
 
+            }
+        }
+
+        [TestMethod]
+        public void DemoVanQuery()
+        {
+            using (var context =new SchoolEntities())
+            {
+                var query = from p in context.People
+                            where p.FullName.FirstName.StartsWith("Bob")
+                            select p.FullName.LastName;
+
+                Console.WriteLine(query);
+            }
+        }
+
+        [TestMethod]
+        public void WatIsLazyLoading()
+        {
+            using (var context = new SchoolEntities())
+            {
+                //context
+                //    .Configuration
+                //    .LazyLoadingEnabled = false;
+
+                foreach (var persoon in context
+                    .People
+                    .OfType<Student>()
+                    .Include(s => s.Grades))
+                {
+                    foreach (var grades in persoon.Grades)
+                    {
+                        Console.WriteLine(grades.Grade);
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
+        public void FindVsSingleOrDefault()
+        {
+            using (var context = new SchoolEntities())
+            {
+                context.Database.Log = Console.WriteLine;
+
+                var li1 = (from p in context.People
+                          where p.PersonID == 6
+                          select p).SingleOrDefault();
+
+                var li2 = context.People.Find(7);
+            }
+        }
+
+        [TestMethod]
+        public void PagingInEntityFramework()
+        {
+            using (var context = new SchoolEntities())
+            {
+                for (int i = 0; i < context.People.Count(); i += 5)
+                {
+                    Console.WriteLine($"[[[[{i}]]]]");
+                    foreach (var p in context.People
+                        .OrderBy(p => p.PersonID)
+                        .Skip(() => i) // <---- query met constant zorgt voor constante query!
+                        .Take(5))
+                    {
+                        Console.WriteLine($"{p.FullName.FirstName} {p.FullName.LastName}");
+                    }
+                }
             }
         }
     }
