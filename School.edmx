@@ -226,8 +226,8 @@
           <Property Name="Credits" Type="Int32" Nullable="false" />
           <Property Name="DepartmentID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Course_Department" FromRole="Course" ToRole="Department" />
-          <NavigationProperty Name="StudentGrades" Relationship="Self.FK_StudentGrade_Course" FromRole="Course" ToRole="StudentGrade" />
           <NavigationProperty Name="Professors" Relationship="SchoolModel.CourseProfessor" FromRole="Course" ToRole="Professor" />
+          <NavigationProperty Name="StudentGrades" Relationship="SchoolModel.FK_StudentGrade_Course" FromRole="Course" ToRole="StudentGrade" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -255,16 +255,6 @@
           <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FullName" Type="SchoolModel.FullName" Nullable="false" />
         </EntityType>
-        <EntityType Name="StudentGrade">
-          <Key>
-            <PropertyRef Name="EnrollmentID" />
-          </Key>
-          <Property Name="EnrollmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseID" Nullable="false" Type="Int32" />
-          <Property Name="Grade" Type="Decimal" Precision="3" Scale="2" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_StudentGrade_Course" FromRole="StudentGrade" ToRole="Course" />
-          <NavigationProperty Name="Student" Relationship="SchoolModel.StudentGradeStudent" FromRole="StudentGrade" ToRole="Student" />
-        </EntityType>
         <Association Name="FK_Course_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
@@ -277,34 +267,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StudentGrade_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="StudentGrade" Type="Self.StudentGrade" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Course">
-              <PropertyRef Name="CourseID" />
-            </Principal>
-            <Dependent Role="StudentGrade">
-              <PropertyRef Name="CourseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Courses" EntityType="Self.Course" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="People" EntityType="Self.Person" />
-          <EntitySet Name="StudentGrades" EntityType="Self.StudentGrade" />
           <AssociationSet Name="FK_Course_Department" Association="Self.FK_Course_Department">
             <End Role="Department" EntitySet="Departments" />
             <End Role="Course" EntitySet="Courses" />
           </AssociationSet>
-          <AssociationSet Name="FK_StudentGrade_Course" Association="Self.FK_StudentGrade_Course">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="StudentGrade" EntitySet="StudentGrades" />
-          </AssociationSet>
           <AssociationSet Name="CourseProfessor" Association="SchoolModel.CourseProfessor">
             <End Role="Course" EntitySet="Courses" />
             <End Role="Professor" EntitySet="People" />
+          </AssociationSet>
+          <EntitySet Name="StudentGrades" EntityType="SchoolModel.StudentGrade" />
+          <AssociationSet Name="FK_StudentGrade_Course" Association="SchoolModel.FK_StudentGrade_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="StudentGrade" EntitySet="StudentGrades" />
           </AssociationSet>
           <AssociationSet Name="StudentGradeStudent" Association="SchoolModel.StudentGradeStudent">
             <End Role="StudentGrade" EntitySet="StudentGrades" />
@@ -329,9 +307,40 @@
           <End Type="SchoolModel.Course" Role="Course" Multiplicity="*" />
           <End Type="SchoolModel.Professor" Role="Professor" Multiplicity="*" />
         </Association>
+        <EntityType Name="StudentGrade">
+          <Key>
+            <PropertyRef Name="EnrollmentID" />
+          </Key>
+          <Property Name="EnrollmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="Grade" Type="Decimal" Precision="3" Scale="2" />
+          <NavigationProperty Name="Course" Relationship="SchoolModel.FK_StudentGrade_Course" FromRole="StudentGrade" ToRole="Course" />
+          <NavigationProperty Name="Students" Relationship="SchoolModel.StudentGradeStudent" FromRole="StudentGrade" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_StudentGrade_Course">
+          <End Type="SchoolModel.Course" Role="Course" Multiplicity="1" />
+          <End Type="SchoolModel.StudentGrade" Role="StudentGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="StudentGrade">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="StudentGradeStudent">
           <End Type="SchoolModel.StudentGrade" Role="StudentGrade" Multiplicity="*" />
           <End Type="SchoolModel.Student" Role="Student" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="StudentGrade">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -404,15 +413,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="StudentGrades">
-            <EntityTypeMapping TypeName="SchoolModel.StudentGrade">
-              <MappingFragment StoreEntitySet="StudentGrade">
-                <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="Grade" ColumnName="Grade" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="CourseProfessor" TypeName="SchoolModel.CourseProfessor" StoreEntitySet="CourseInstructor">
             <EndProperty Name="Professor">
               <ScalarProperty Name="PersonID" ColumnName="PersonID" />
@@ -421,14 +421,16 @@
               <ScalarProperty Name="CourseID" ColumnName="CourseID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="StudentGradeStudent" TypeName="SchoolModel.StudentGradeStudent" StoreEntitySet="StudentGrade">
-            <EndProperty Name="Student">
-              <ScalarProperty Name="PersonID" ColumnName="StudentID" />
-            </EndProperty>
-            <EndProperty Name="StudentGrade">
-              <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="StudentGrades">
+            <EntityTypeMapping TypeName="SchoolModel.StudentGrade">
+              <MappingFragment StoreEntitySet="StudentGrade">
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

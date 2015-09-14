@@ -17,8 +17,8 @@ namespace EntityFrameworkDemo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Course()
         {
-            this.StudentGrades = new HashSet<StudentGrade>();
             this.Professors = new HashSet<Professor>();
+            this.StudentGrades = new HashSet<StudentGrade>();
         }
     
         public int CourseID { get; set; }
@@ -28,8 +28,8 @@ namespace EntityFrameworkDemo
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StudentGrade> StudentGrades { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Professor> Professors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentGrade> StudentGrades { get; set; }
     }
 }
