@@ -14,16 +14,34 @@ namespace EntityFrameworkDemo
             {
                 foreach (var course in context.Courses.OfType<OnsiteCourse>())
                 {
-                    Console.WriteLine("{0} {1}",
-                        course.Title, course.Location);
+                    Console.WriteLine($"{course.Title} {course.Location}");
                 }
 
                 foreach (var course in context.Courses.OfType<OnlineCourse>())
                 {
-                    Console.WriteLine("{0} {1}", 
-                        course.Title, course.URL);
+                    Console.WriteLine($"{course.Title} {course.URL}");
                 }
                 
+            }
+        }
+
+        [TestMethod]
+        public void TablePerHierarchyOnPerson()
+        {
+            using (var context = new SchoolEntities())
+            {
+                Console.WriteLine("-- Professors: ");
+                foreach (var person in context.People.OfType<Professor>())
+                {
+                    Console.WriteLine($"{person.FirstName} {person.LastName} ({person.HireDate})");
+                }
+
+                Console.WriteLine("-- Students: ");
+                foreach (var person in context.People.OfType<Student>())
+                {
+                    Console.WriteLine($"{person.FirstName} {person.LastName} ({person.EnrollmentDate})");
+                }
+
             }
         }
     }

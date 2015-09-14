@@ -19,6 +19,10 @@
         <AssociationConnector Association="SchoolModel.CourseInstructor" ManuallyRouted="false" />
         <InheritanceConnector EntityType="SchoolModel.OnlineCourse" />
         <InheritanceConnector EntityType="SchoolModel.OnsiteCourse" />
+        <EntityTypeShape EntityType="SchoolModel.Student" Width="1.5" PointX="3.625" PointY="10.75" />
+        <InheritanceConnector EntityType="SchoolModel.Student" />
+        <EntityTypeShape EntityType="SchoolModel.Professor" Width="1.5" PointX="6.125" PointY="10.75" />
+        <InheritanceConnector EntityType="SchoolModel.Professor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
