@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework", "EntityFr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.CodeFirst", "EntityFramework.CodeFirst\EntityFramework.CodeFirst.csproj", "{56563165-1814-4571-A4C4-27EE8AD4E805}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirst.ReverseEngineered", "CodeFirst.ReverseEngineered\CodeFirst.ReverseEngineered.csproj", "{BDE3804B-9A55-48BA-AB02-2516D3BB7110}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{56563165-1814-4571-A4C4-27EE8AD4E805}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56563165-1814-4571-A4C4-27EE8AD4E805}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56563165-1814-4571-A4C4-27EE8AD4E805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDE3804B-9A55-48BA-AB02-2516D3BB7110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE3804B-9A55-48BA-AB02-2516D3BB7110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE3804B-9A55-48BA-AB02-2516D3BB7110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE3804B-9A55-48BA-AB02-2516D3BB7110}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
