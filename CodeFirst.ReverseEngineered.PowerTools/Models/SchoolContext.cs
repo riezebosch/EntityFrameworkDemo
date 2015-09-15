@@ -1,6 +1,7 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using CodeFirst.ReverseEngineered.PowerTools.Models.Mapping;
+using CodeFirst.ReverseEngineered.PowerTools.Models.Mappings;
 
 namespace CodeFirst.ReverseEngineered.PowerTools.Models
 {
@@ -33,6 +34,7 @@ namespace CodeFirst.ReverseEngineered.PowerTools.Models
             modelBuilder.Configurations.Add(new OnsiteCourseMap());
             modelBuilder.Configurations.Add(new PersonMap());
             modelBuilder.Configurations.Add(new StudentGradeMap());
+            modelBuilder.Configurations.Add(new StudentMap());
         }
     }
 }

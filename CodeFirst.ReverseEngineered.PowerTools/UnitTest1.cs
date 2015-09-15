@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CodeFirst.ReverseEngineered.PowerTools.Models;
+using System.Linq;
 
 namespace CodeFirst.ReverseEngineered.PowerTools
 {
@@ -20,6 +21,16 @@ namespace CodeFirst.ReverseEngineered.PowerTools
                 {
                     Console.WriteLine($"{p.FirstName} {p.LastName}");
                 }
+            }
+        }
+
+        [TestMethod]
+        public void VoorbeeldVanMigration()
+        {
+            using (var context = new SchoolContext())
+            {
+                Assert.IsTrue(context.People.OfType<Student>().Any(s => s.FirstName == "Gytis"));
+
             }
         }
     }

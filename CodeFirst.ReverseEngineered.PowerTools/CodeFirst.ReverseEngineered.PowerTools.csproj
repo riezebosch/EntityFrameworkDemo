@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Mappings\StudentMap.cs" />
     <Compile Include="Models\Mapping\CourseMap.cs" />
     <Compile Include="Models\Mapping\DepartmentMap.cs" />
     <Compile Include="Models\Mapping\OfficeAssignmentMap.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Models\OnsiteCourse.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\SchoolContext.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentGrade.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

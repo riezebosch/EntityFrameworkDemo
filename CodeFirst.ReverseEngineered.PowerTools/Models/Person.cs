@@ -15,7 +15,6 @@ namespace CodeFirst.ReverseEngineered.PowerTools.Models
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public Nullable<System.DateTime> HireDate { get; set; }
-        public Nullable<System.DateTime> EnrollmentDate { get; set; }
         public virtual OfficeAssignment OfficeAssignment { get; set; }
         public virtual ICollection<StudentGrade> StudentGrades { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
