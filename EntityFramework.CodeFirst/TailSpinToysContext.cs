@@ -12,5 +12,13 @@ namespace EntityFramework.CodeFirst
 
         public DbSet<Store> Stores { get; set; }
         public DbSet<Toy> Toys { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Store>().ToTable("Winkel");
+            modelBuilder.Entity<Toy>().Property(toy => toy.Timestamp).IsRowVersion();
+        }
     }
 }

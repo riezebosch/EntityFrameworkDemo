@@ -13,5 +13,6 @@ namespace EntityFramework.CodeFirst
         public string Name { get; set; }
         [ConcurrencyCheck]
         public decimal? Price { get; set; }
+        public byte[] Timestamp { get; internal set; }
     }
 }
