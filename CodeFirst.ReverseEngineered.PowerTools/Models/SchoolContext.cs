@@ -1,7 +1,6 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using CodeFirst.ReverseEngineered.PowerTools.Models.Mapping;
-using CodeFirst.ReverseEngineered.PowerTools.Models.Mappings;
 
 namespace CodeFirst.ReverseEngineered.PowerTools.Models
 {

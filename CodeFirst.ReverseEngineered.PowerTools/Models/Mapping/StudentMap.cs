@@ -1,12 +1,12 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 
-namespace CodeFirst.ReverseEngineered.PowerTools.Models.Mappings
+namespace CodeFirst.ReverseEngineered.PowerTools.Models.Mapping
 {
     class StudentMap : EntityTypeConfiguration<Student>
     {
         public StudentMap()
         {
-            this.Map(m => m.Requires(p => p.EnrollmentDate).HasValue());
+            this.ToTable("Student");
         }
     }
 }

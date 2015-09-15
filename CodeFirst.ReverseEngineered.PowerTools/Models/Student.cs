@@ -4,6 +4,6 @@ namespace CodeFirst.ReverseEngineered.PowerTools.Models
 {
     class Student : Person
     {
-        public DateTime? EnrollmentDate { get; set; }
+        public DateTime EnrollmentDate { get; set; }
     }
 }

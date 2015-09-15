@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeFirst.ReverseEngineered.PowerTools</RootNamespace>
     <AssemblyName>CodeFirst.ReverseEngineered.PowerTools</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,9 +60,22 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Migrations\201509151311248_Initial.cs" />
+    <Compile Include="Migrations\201509151311248_Initial.Designer.cs">
+      <DependentUpon>201509151311248_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509151313408_FromTphToTpt.cs" />
+    <Compile Include="Migrations\201509151313408_FromTphToTpt.Designer.cs">
+      <DependentUpon>201509151313408_FromTphToTpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509151330341_EnrollmentDateRequired.cs" />
+    <Compile Include="Migrations\201509151330341_EnrollmentDateRequired.Designer.cs">
+      <DependentUpon>201509151330341_EnrollmentDateRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
-    <Compile Include="Models\Mappings\StudentMap.cs" />
+    <Compile Include="Models\Mapping\StudentMap.cs" />
     <Compile Include="Models\Mapping\CourseMap.cs" />
     <Compile Include="Models\Mapping\DepartmentMap.cs" />
     <Compile Include="Models\Mapping\OfficeAssignmentMap.cs" />
@@ -82,6 +96,17 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201509151311248_Initial.resx">
+      <DependentUpon>201509151311248_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509151313408_FromTphToTpt.resx">
+      <DependentUpon>201509151313408_FromTphToTpt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509151330341_EnrollmentDateRequired.resx">
+      <DependentUpon>201509151330341_EnrollmentDateRequired.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
