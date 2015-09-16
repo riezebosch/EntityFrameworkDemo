@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201509160631256_Initial.Designer.cs">
       <DependentUpon>201509160631256_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509160739039_Rating.cs" />
+    <Compile Include="Migrations\201509160739039_Rating.Designer.cs">
+      <DependentUpon>201509160739039_Rating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="TeamDemoContext.cs" />
     <Compile Include="UnitTest1.cs" />
@@ -77,6 +81,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201509160631256_Initial.resx">
       <DependentUpon>201509160631256_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509160739039_Rating.resx">
+      <DependentUpon>201509160739039_Rating.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Choose>

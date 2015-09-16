@@ -15,7 +15,7 @@ namespace CodeFirst.ReverseEngineered.PowerTools
         {
             using (var context = new TeamDemoContext())
             {
-                context.DemoData.Add(new DemoData { Description = "Demo" });
+                context.DemoData.Add(new DemoData { Description = "Demo", Rating = 5 });
             }
         }
         
