@@ -7,13 +7,13 @@ namespace CodeFirst.ReverseEngineered.PowerTools.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class FromTphToTpt : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FromTphToTpt));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201509151313408_FromTphToTpt"; }
+            get { return "201509160631256_Initial"; }
         }
         
         string IMigrationMetadata.Source

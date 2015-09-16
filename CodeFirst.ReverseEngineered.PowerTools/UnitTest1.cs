@@ -1,9 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CodeFirst.ReverseEngineered.PowerTools.Models;
-using System.Linq;
-using System.Data.Entity;
-using CodeFirst.ReverseEngineered.PowerTools.Migrations;
 
 namespace CodeFirst.ReverseEngineered.PowerTools
 {
@@ -17,24 +13,12 @@ namespace CodeFirst.ReverseEngineered.PowerTools
         [TestMethod]
         public void TestMethod1()
         {
-            using (var context = new SchoolContext())
+            using (var context = new TeamDemoContext())
             {
-                foreach (var p in context.People)
-                {
-                    Console.WriteLine($"{p.FirstName} {p.LastName}");
-                }
+                context.DemoData.Add(new DemoData { Description = "Demo" });
             }
         }
         
-        [TestMethod]
-        public void VoorbeeldVanMigration()
-        {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SchoolContext, Configuration>());
-            using (var context = new SchoolContext())
-            {
-                Assert.IsTrue(context.People.OfType<Student>().Any(s => s.FirstName == "Gytis"));
-
-            }
-        }
+        
     }
 }
