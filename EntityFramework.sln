@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirst.ReverseEngineered
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirst.ReverseEngineered.ReversePocoGenerator", "CodeFirst.ReverseEngineered.ReversePocoGenerator\CodeFirst.ReverseEngineered.ReversePocoGenerator.csproj", "{3878C721-5A99-4577-9382-46629C7F56A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiDemo", "WebApiDemo\WebApiDemo.csproj", "{657F67BC-5D4E-4649-B50A-3A591C3F52A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3878C721-5A99-4577-9382-46629C7F56A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3878C721-5A99-4577-9382-46629C7F56A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3878C721-5A99-4577-9382-46629C7F56A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{657F67BC-5D4E-4649-B50A-3A591C3F52A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{657F67BC-5D4E-4649-B50A-3A591C3F52A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{657F67BC-5D4E-4649-B50A-3A591C3F52A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{657F67BC-5D4E-4649-B50A-3A591C3F52A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,7 @@
 
 namespace CodeFirst.ReverseEngineered.PowerTools.Models
 {
-    class Student : Person
+    public class Student : Person
     {
         public DateTime EnrollmentDate { get; set; }
     }
