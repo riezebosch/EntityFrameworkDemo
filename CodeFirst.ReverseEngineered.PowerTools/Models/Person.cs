@@ -18,5 +18,6 @@ namespace CodeFirst.ReverseEngineered.PowerTools.Models
         public virtual OfficeAssignment OfficeAssignment { get; set; }
         public virtual ICollection<StudentGrade> StudentGrades { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
+        public byte[] Timestamp { get; internal set; }
     }
 }

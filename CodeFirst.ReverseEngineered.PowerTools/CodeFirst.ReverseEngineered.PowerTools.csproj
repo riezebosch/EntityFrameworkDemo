@@ -46,6 +46,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -71,6 +73,10 @@
     <Compile Include="Migrations\201509151330341_EnrollmentDateRequired.cs" />
     <Compile Include="Migrations\201509151330341_EnrollmentDateRequired.Designer.cs">
       <DependentUpon>201509151330341_EnrollmentDateRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509170729271_Timestamp.cs" />
+    <Compile Include="Migrations\201509170729271_Timestamp.Designer.cs">
+      <DependentUpon>201509170729271_Timestamp.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509151330341_EnrollmentDateRequired.resx">
       <DependentUpon>201509151330341_EnrollmentDateRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509170729271_Timestamp.resx">
+      <DependentUpon>201509170729271_Timestamp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Choose>

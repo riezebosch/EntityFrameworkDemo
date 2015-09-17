@@ -4,6 +4,8 @@ using CodeFirst.ReverseEngineered.PowerTools.Models;
 using System.Linq;
 using System.Data.Entity;
 using CodeFirst.ReverseEngineered.PowerTools.Migrations;
+using System.Transactions;
+using System.Data.Entity.Infrastructure;
 
 namespace CodeFirst.ReverseEngineered.PowerTools
 {
@@ -25,7 +27,7 @@ namespace CodeFirst.ReverseEngineered.PowerTools
                 }
             }
         }
-        
+
         [TestMethod]
         public void VoorbeeldVanMigration()
         {
@@ -34,6 +36,114 @@ namespace CodeFirst.ReverseEngineered.PowerTools
             {
                 Assert.IsTrue(context.People.OfType<Student>().Any(s => s.FirstName == "Gytis"));
 
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(DbUpdateConcurrencyException))]
+        public void VoorbeeldVanConcurrency()
+        {
+            using (new TransactionScope())
+            {
+                using (var ctx1 = new SchoolContext())
+                using (var ctx2 = new SchoolContext())
+                {
+                    var p1 = ctx1.People.Find(14);
+                    p1.FirstName = "Demo1";
+
+                    var p2 = ctx2.People.Find(14);
+                    p2.FirstName = "Demo2";
+
+                    ctx1.SaveChanges();
+                    ctx2.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void VoorbeeldVanConcurrency_Client2Wint()
+        {
+            using (new TransactionScope())
+            {
+                using (var ctx1 = new SchoolContext())
+                using (var ctx2 = new SchoolContext())
+                {
+                    ctx2.Database.Log = Console.WriteLine;
+
+                    var p1 = ctx1.People.Find(14);
+                    p1.FirstName = "Demo1";
+
+                    var p2 = ctx2.People.Find(14);
+                    p2.FirstName = "Demo2";
+
+                    ctx1.SaveChanges();
+
+                    try
+                    {
+                        ctx2.SaveChanges();
+                    }
+                    catch (DbUpdateConcurrencyException ex)
+                    {
+                        var entry = ex.Entries.First();
+                        entry.OriginalValues.SetValues(entry.GetDatabaseValues());
+
+                        ctx2.SaveChanges();
+                    }
+                }
+
+
+                using (var ctx = new SchoolContext())
+                {
+                    var p = ctx.People.Find(14);
+                    Assert.AreEqual("Demo2", p.FirstName);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void VoorbeeldVanConcurrency_Client2Verliest()
+        {
+            using (new TransactionScope())
+            {
+                using (var ctx1 = new SchoolContext())
+                using (var ctx2 = new SchoolContext())
+                {
+                    ctx2.Database.Log = Console.WriteLine;
+
+                    var p1 = ctx1.People.Find(14);
+                    p1.FirstName = "Demo1";
+
+                    var p2 = ctx2.People.Find(14);
+                    p2.FirstName = "Demo2";
+
+                    var p3 = ctx2.People.Find(15);
+                    p3.FirstName = "YetAnotherChange";
+
+                    ctx1.SaveChanges();
+
+                    try
+                    {
+                        ctx2.SaveChanges();
+                    }
+                    catch (DbUpdateConcurrencyException ex)
+                    {
+                        var entry = ex.Entries.First();
+                        entry.Reload();
+
+                        ctx2.SaveChanges();
+                    }
+                }
+
+
+                using (var ctx = new SchoolContext())
+                {
+                    var p2 = ctx.People.Find(14);
+                    Assert.AreEqual("Demo1", p2.FirstName);
+
+                    var p3 = ctx.People.Find(15);
+                    Assert.AreEqual("YetAnotherChange", p3.FirstName);
+
+                }
             }
         }
     }
