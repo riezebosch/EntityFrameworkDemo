@@ -6,6 +6,7 @@ using System.Data.Entity;
 using CodeFirst.ReverseEngineered.PowerTools.Migrations;
 using System.Transactions;
 using System.Data.Entity.Infrastructure;
+using System.Threading.Tasks;
 
 namespace CodeFirst.ReverseEngineered.PowerTools
 {
@@ -153,6 +154,31 @@ namespace CodeFirst.ReverseEngineered.PowerTools
                 Assert.AreEqual("YetAnotherChange", p3.FirstName);
 
             }
+        }
+
+        [TestMethod]
+        public async Task TestVanAsyncMetTransactions()
+        {
+            var trans = new TransactionScope(TransactionScopeOption.RequiresNew,
+                TransactionScopeAsyncFlowOption.Enabled);
+
+            using (var context = new SchoolContext())
+            {
+                var p = context.People.Find(1);
+                p.FirstName = "TEST";
+
+                await context.SaveChangesAsync();
+                trans.Dispose();
+
+                using (new TransactionScope(TransactionScopeOption.RequiresNew))
+                using (var ctx2 = new SchoolContext())
+                {
+                    var p2 = ctx2.People.Find(1);
+                    Assert.AreNotEqual("TEST", p2.FirstName);
+                }
+            }
+
+
         }
     }
 }
